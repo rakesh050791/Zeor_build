@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
    	render :json => {
                       :responseCode => "200",
                       :responseMessage => "You have logged in successfully",
-                      :current_user => current_user
+                      # :current_user => current_user
                     }
    else
    	false

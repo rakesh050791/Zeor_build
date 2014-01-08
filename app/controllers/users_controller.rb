@@ -13,6 +13,7 @@ class UsersController < ApplicationController
 
 	def user_confirmation
 	  @user = User.find_by_confirmation_token(params[:confirmation_token])
+	  unless @user.nil?
 		if @user.confirmation_token_sent_at < Time.zone.now + 2.hours
 		   @user.confirmation_token = nil
 		   @user.save
@@ -21,6 +22,7 @@ class UsersController < ApplicationController
 	                         :responseMessage => "Your account is successfully activated"							
 						   }
 		end
+	  end
 	end	
 
     def update_password 

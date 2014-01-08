@@ -8,6 +8,7 @@ gem 'rails', '3.2.14'
 gem 'pg'
 gem 'quiet_assets'
 gem 'thin'
+gem 'rails_12factor', group: :production
 
 
 # Gems used only for assets and not required

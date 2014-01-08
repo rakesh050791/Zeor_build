@@ -1,7 +1,10 @@
 class User < ActiveRecord::Base
   attr_accessible :address_1, :address_2, :age, :company_name,:password, :password_confirmation,:email, :gender, :phone, :username, :confirmation_token, :confirmation_token_sent_at
   validates_confirmation_of :password
+  validates :age, :password, :email,:address_1,:address_2,:gender,:username,:phone presence: true
+  validates :email,:username uniqueness: true
 
+  
  def self.authenticate(email,password)
  	user = User.find_by_email(email)
  	if user && user.password.eql?(Digest::SHA1.hexdigest(password))

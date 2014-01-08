@@ -37,5 +37,9 @@ class UsersController < ApplicationController
                             :responseMessage => "password didnt match"							
 					       }
 	    end
-    end    
+    end   
+
+    def index
+
+    end 
 end

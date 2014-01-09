@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password
   validates :age, :password, :email,:address_1,:address_2,:gender,:username,:phone,presence: true
   validates :email,:username, uniqueness: true
+  validates :email, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create }
 
 
 	 def self.authenticate(email,password)
@@ -14,7 +15,6 @@ class User < ActiveRecord::Base
 	 	end
 	 end
 	 
-
 
 	 def send_password_reset
 	 	generate_token(:password_reset_token)

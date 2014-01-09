@@ -1,4 +1,6 @@
 class ForgotPasswordController < ApplicationController
+	
+   skip_before_filter :authorize
 
 	def create
 		@user = User.find_by_email(params[:email])
@@ -15,7 +17,7 @@ class ForgotPasswordController < ApplicationController
 			render :text => {		      	
 	           	:responseMessage => "You password reset token is expired. Please try again"							
 							   }
-    end							   
+    	end							   
 	end
 
 	def update

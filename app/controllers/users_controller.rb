@@ -1,11 +1,14 @@
 class UsersController < ApplicationController
- 	
+ # include GolbalsModule
+  before_filter :authorize,:except => [:create,:user_confirmation]
+ 	#http_basic_authenticate_with :name => "frodo", :password => "thering", except: :create
+ 	 
 	def create
 		@user = User.new(params[:user])
 		@user.password = Digest::SHA1.hexdigest(params[:password])
 		@user.send_confirmation_token 
 		if @user.save
-			render :json =>{:msg => "You have succesfully Signed Up"}
+			render :json =>{:msg => "You have succesfully Signed Up. You confiramation instructions are sent on your mail. The token is valid for only two hours"}
 		else
 			render :json => {:msg => "Please try again"}
 		end
@@ -21,7 +24,17 @@ class UsersController < ApplicationController
 							 :responseCode => "200",
 	                         :responseMessage => "Your account is successfully activated"							
 						   }
+		else
+		   render :json => {
+		    		 :responseCode => "400",
+	                 :responseMessage => "Your confiramtion token is Valid only for 2 hours. It is expired now.Please try again"							
+						   }
 		end
+	else
+		render :json => {
+							 :responseCode => "200",
+	                         :responseMessage => "Your confiramtion token is expired.Please try again"							
+						   }
 	  end
 	end	
 
@@ -43,5 +56,5 @@ class UsersController < ApplicationController
 
     def index
 
-    end 
+    end     
 end

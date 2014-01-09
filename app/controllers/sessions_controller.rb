@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   
-  skip_before_filter :authorize, :except => :destroy
-
+  before_filter :authorize
+  # http_basic_authenticate_with :name => "frodo", :password => "thering"
   def create
     user = User.authenticate(params[:email],params[:password])
     if user.confirmation_token.nil?	

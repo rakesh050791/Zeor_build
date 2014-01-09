@@ -1,7 +1,20 @@
 class ApplicationController < ActionController::Base
   #protect_from_forgery 
 
-   before_filter :current_user 
+    before_filter :current_user 
+
+
+	before_filter :authorize
+
+    def authorize
+	    if user = authenticate_with_http_basic { |u, p| User.authenticate(u, p) }
+	    	puts "=================================== in if"
+	      @current_user = user
+	    else
+	    	puts "=================================== in elf"
+	      request_http_basic_authentication
+	    end
+    end
   
    private
 
@@ -10,14 +23,7 @@ class ApplicationController < ActionController::Base
    end
 
 
-	before_filter :authorize
-	  protected
 
-	  def authorize
-	    unless User.find_by_id(session[:user_id])
-	      render :json => {:responseCode => "401", :responseMessage => "Please login again your session has been expired."}
-	    end
-	  end
 
    # before_filter :authenticate_user
 

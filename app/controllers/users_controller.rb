@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
- # include GolbalsModule
-  before_filter :authorize,:except => [:create,:user_confirmation]
+
+  before_filter :authorize,:except => [:create,:user_confirmation,:index]
  	#http_basic_authenticate_with :name => "frodo", :password => "thering", except: :create
  	 
 	def create

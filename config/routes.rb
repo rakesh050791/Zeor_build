@@ -1,5 +1,8 @@
 GeneralApp::Application.routes.draw do
 
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+
   resources :users
   match 'user_confirmation' => 'users#user_confirmation', :as => :confirmation
   match '/update_password' => 'users#update_password'

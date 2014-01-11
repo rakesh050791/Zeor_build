@@ -10,7 +10,7 @@ gem 'pg'
 gem 'quiet_assets'
 gem 'thin'
 gem 'rails_12factor', group: :production
-
+gem  'heroku'
 
 
 # Gems used only for assets and not required

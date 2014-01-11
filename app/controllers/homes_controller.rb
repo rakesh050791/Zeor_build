@@ -25,4 +25,37 @@ class HomesController < ApplicationController
 	                      }
 	     end
 	end
+
+	def category
+		@categories = Category.all
+		unless @categories.empty?
+			a = []
+			@categories.each do |cat|
+			 		a << cat.title
+			end
+				 render :json => a
+			else
+			    render :json => {
+						:responseCode => "500",
+						:responseMessage => "No such result found"	
+	 						     }
+	 	    end
+	end
+
+	def sub_category
+		@sub_categories = SubCategory.find_all_by_category_id(params[:id])
+		unless @sub_categories.empty?
+			b = []
+			@sub_categories.each do |cat|
+			 		b << cat.title
+			end
+				 render :json => b.as_json
+			else
+			    render :json => {
+						:responseCode => "500",
+						:responseMessage => "No such result found"	
+	 						     }
+	 	    end
+	end
+	
 end

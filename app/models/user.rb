@@ -14,6 +14,15 @@ class User < ActiveRecord::Base
 	 		false
 	 	end
 	 end
+
+	 def self.match(username,password)
+	 	user = User.find_by_username(username)
+	 	if user && user.password.eql?(Digest::SHA1.hexdigest(password))
+	 		user
+	 	else
+	 		false
+	 	end
+	 end
 	 
 
 	 def send_password_reset

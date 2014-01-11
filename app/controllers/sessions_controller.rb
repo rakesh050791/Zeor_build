@@ -3,7 +3,11 @@ class SessionsController < ApplicationController
   before_filter :authorize
   
     def create
-      user = User.authenticate(params[:email],params[:password])
+      if params[:email].present?
+        user = User.authenticate(params[:email],params[:password])
+      else
+        user = User.match(params[:username],params[:password])
+      end
       if user.confirmation_token.nil?	
          if user
      	      session[:user_id] = user.id

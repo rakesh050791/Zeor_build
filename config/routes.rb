@@ -12,7 +12,9 @@ GeneralApp::Application.routes.draw do
 
   resources :homes
   get '/terms' => 'homes#terms', :as => :terms
-  match '/privacy' => 'homes#privacy', :as => :privacy
+  get '/privacy' => 'homes#privacy', :as => :privacy
+  get '/category' => 'homes#category', :as => :category
+  get '/sub_category/:id' => 'homes#sub_category', :as => :subcategory
 
   resources :forgot_password
   match '/forgot_password/edit/:password_reset_token' => 'forgot_password#edit', :as => :Change_password

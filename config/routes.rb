@@ -7,6 +7,10 @@ GeneralApp::Application.routes.draw do
 
   resources :sessions
 
+  resources :homes
+  get '/terms' => 'homes#terms', :as => :terms
+  match '/privacy' => 'homes#privacy', :as => :privacy
+
   resources :forgot_password
   match '/forgot_password/edit/:password_reset_token' => 'forgot_password#edit', :as => :Change_password
   # The priority is based upon order of creation:

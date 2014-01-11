@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
 
   before_filter :authorize,:except => [:create,:user_confirmation,:index]
- 	#http_basic_authenticate_with :name => "frodo", :password => "thering", except: :create
- 	 
+ 	 	 
 	def create
 		@user = User.new(params[:user])
 		@user.password = Digest::SHA1.hexdigest(params[:password])
@@ -26,16 +25,16 @@ class UsersController < ApplicationController
 						   }
 		else
 		   render :json => {
-		    		 :responseCode => "400",
-	                 :responseMessage => "Your confiramtion token is Valid only for 2 hours. It is expired now.Please try again"							
+				    		 :responseCode => "400",
+			                 :responseMessage => "Your confiramtion token is Valid only for 2 hours. It is expired now.Please try again"							
 						   }
 		end
-	else
-		render :json => {
+	    else
+		   render :json => {
 							 :responseCode => "200",
 	                         :responseMessage => "Your confiramtion token is expired.Please try again"							
 						   }
-	  end
+	     end
 	end	
 
     def update_password 

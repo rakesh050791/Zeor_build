@@ -5,3 +5,5 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+    Terms.create([{ description: 'Lorem Ipsum is simply dummy text of the printing and typesetting,Lorem Ipsum is simply dummy text of the printing and typesetting'}])
+    Privacy.create([{ description: ' Lorem Ipsum is simply dummy text of the printing and typesetting,Lorem Ipsum is simply dummy text of the printing and typesetting'}])

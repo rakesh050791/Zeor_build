@@ -4,7 +4,10 @@ class HomesController < ApplicationController
 	def terms
 		@terms = Terms.all
 		unless @terms.empty?
-		  render :json => {:terms => @terms.first.description }
+		  render :json => {
+		  	      :responseCode => "200",
+		  	      :responseMessage => @terms.first.description 
+		                  }
 	                     
 	     else
 	      render :json => {
@@ -17,7 +20,10 @@ class HomesController < ApplicationController
     def privacy
 		@privacy = Privacy.all
 		unless @privacy.empty?
-		  render :json => {:privacy => @privacy.first.description }
+		  render :json => {
+				  	:responseCode => "200",
+				  	:responseMessage  => @privacy.first.description
+		  	              }
 	     else
 	      render :json => {
 	       		    :responseCode => "500",
@@ -33,7 +39,10 @@ class HomesController < ApplicationController
 			@categories.each do |cat|
 			 		a << cat.title
 			end
-				 render :json => {:responseMessage => a }
+				 render :json => {
+                    :responseCode => "200",
+				 	:responseMessage => a 
+				                 }
 			else
 			    render :json => {
 						:responseCode => "500",
@@ -49,7 +58,10 @@ class HomesController < ApplicationController
 			@sub_categories.each do |cat|
 			 		b << cat.title
 			end
-				 render :json => b.as_json
+				 render :json => {
+				 	:responseCode => "200",
+				 	:responseMessage =>  b.as_json
+				 	             }
 			else
 			    render :json => {
 						:responseCode => "500",
@@ -65,7 +77,10 @@ class HomesController < ApplicationController
 			@items.each do |item|
 			c << item.title
 			end
-			    render :json => c.as_json
+			    render :json => {
+			    			:responseCode => "200",
+						    :responseMessage => c.as_json 
+			    				 }
 		else
 			    render :json => {
 						:responseCode => "500",
@@ -82,7 +97,10 @@ class HomesController < ApplicationController
 			     item[:description] = item.description
 			     item[:type] = item.item_type
 		     end
-		         render :json => @items.as_json(:only =>[:title,:description,:type])
+		         render :json => {
+		         			:responseCode => "200",
+						    :responseMessage => @items.as_json(:only =>[:title,:description,:type])
+		         				}
 	    else
 			     render :json => {
 							:responseCode => "500",

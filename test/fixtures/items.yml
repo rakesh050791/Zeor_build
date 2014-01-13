@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  sub_category_id: 1
+  title: MyString
+  item_type: MyString
+  amount: MyString
+  description: MyText
+
+two:
+  sub_category_id: 1
+  title: MyString
+  item_type: MyString
+  amount: MyString
+  description: MyText

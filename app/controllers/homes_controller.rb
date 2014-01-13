@@ -57,5 +57,38 @@ class HomesController < ApplicationController
 	 						     }
 	 	    end
 	end
+
+	def item
+		@items = Item.find_all_by_sub_category_id(params[:id])
+		unless @items.empty?
+			c = []
+			@items.each do |item|
+			c << item.title
+			end
+			    render :json => c.as_json
+		else
+			    render :json => {
+						:responseCode => "500",
+						:responseMessage => "No such result found"	
+	 						     }
+	 	end
+	end
+
+	def item_record
+		@items = Item.find_all_by_id(params[:id])
+		unless @items.empty?
+			 @items.each do |item|
+			     item[:title] = item.title
+			     item[:description] = item.description
+			     item[:type] = item.item_type
+		     end
+		         render :json => @items.as_json(:only =>[:title,:description,:type])
+	    else
+			     render :json => {
+							:responseCode => "500",
+							:responseMessage => "No such result found"	
+								 }
+	    end      
+	end
 	
 end

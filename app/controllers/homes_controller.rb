@@ -4,7 +4,7 @@ class HomesController < ApplicationController
 	def terms
 		@terms = Terms.all
 		unless @terms.empty?
-		  render :json => @terms.first.description
+		  render :json => @terms.first.description.as_json
 	                     
 	     else
 	      render :json => {
@@ -17,7 +17,7 @@ class HomesController < ApplicationController
     def privacy
 		@privacy = Privacy.all
 		unless @privacy.empty?
-		  render :json => @privacy.first.description
+		  render :json => @privacy.first.description.as_json
 	     else
 	      render :json => {
 	       		    :responseCode => "500",

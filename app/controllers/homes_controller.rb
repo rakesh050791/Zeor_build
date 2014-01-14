@@ -22,7 +22,7 @@ class HomesController < ApplicationController
 		  render :json => {
 						:responseCode => "200",
 						:responseMessage => @privacy.first.description
-	 						}  	
+	 					  }  	
 	     else
 	      render :json => {
 	       		    :responseCode => "500",
@@ -44,7 +44,7 @@ class HomesController < ApplicationController
 						:responseMessage => @categories.as_json(:only =>[:id,:title,:description])	
 	 						     }
 		else
-			    render :json => {
+			    render :json =>  {
 						:responseCode => "500",
 						:responseMessage => "No such result found"	
 	 						     }
@@ -64,7 +64,7 @@ class HomesController < ApplicationController
 						:responseMessage => @sub_categories.as_json(:only =>[:id,:title,:description])	
 	 						     }
 		else
-			    render :json => {
+			    render :json =>  {
 						:responseCode => "500",
 						:responseMessage => "No such result found"	
 	 						     }
@@ -78,12 +78,12 @@ class HomesController < ApplicationController
 		    item[:id] = item.id		
 			item[:title] = item.title
 			end
-			   render :json => {
+			   render :json =>  {
 						:responseCode => "200",
 						:responseMessage => @items.as_json(:only =>[:id,:title])	
 	 						    }
 		else
-			    render :json => {
+			    render :json =>  {
 						:responseCode => "500",
 						:responseMessage => "No such result found"	
 	 						     }
@@ -94,14 +94,14 @@ class HomesController < ApplicationController
 		@items = Item.find_all_by_id(params[:id])
 		unless @items.empty?
 			 @items.each do |item|
-			     item[:id] = item.id				 	 
+			     # item[:id] = item.id				 	 
 			     item[:title] = item.title
 			     item[:description] = item.description
 			     item[:type] = item.item_type
 		     end
 		         render :json => {
 							:responseCode => "200",
-							:responseMessage => @items.as_json(:only =>[:id,:title,:description,:type])
+							:responseMessage => @items.as_json(:only =>[:title,:description,:type])
 	    						 }
 	    else
 			     render :json => {

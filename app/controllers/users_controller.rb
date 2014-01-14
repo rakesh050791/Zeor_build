@@ -7,7 +7,10 @@ class UsersController < ApplicationController
 		@user.password = Digest::SHA1.hexdigest(params[:password])
 		@user.send_confirmation_token 
 		if @user.save
-			render :json =>{:msg => "You have succesfully Signed Up. You confiramation instructions are sent on your mail. The token is valid for only two hours"}
+			render :json => {
+							 :responseCode => "200",
+	                         :responseMessage => "You have succesfully Signed Up. You confiramation instructions are sent on your mail. The token is valid for only two hours"							
+						    }			
 		else
 			render :json => {:msg => "Please try again"}
 		end

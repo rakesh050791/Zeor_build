@@ -109,6 +109,5 @@ class HomesController < ApplicationController
 							:responseMessage => "No such result found"	
 								 }
 	    end      
-	end
-	
+	end	
 end

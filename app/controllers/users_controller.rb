@@ -41,7 +41,7 @@ class UsersController < ApplicationController
 	end	
 
     def update_password 
-   	  @user = User.find_by_id(current_user.id)
+   	    @user = User.find_by_id(current_user.id)
 	    if @user.password == Digest::SHA1.hexdigest(params[:old_password])
 	       @user.update_attributes(:password => Digest::SHA1.hexdigest(params[:new_password]))
 	       render :json => {

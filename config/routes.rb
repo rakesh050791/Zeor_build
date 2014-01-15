@@ -17,6 +17,7 @@ GeneralApp::Application.routes.draw do
   get '/sub_category/:id' => 'homes#sub_category', :as => :subcategory
   get '/item/:id' => 'homes#item', :as => :item
   get '/item_record/:id' => 'homes#item_record', :as => :item_record
+  post '/contact' => 'contacts#contact', :as => :contact_us
   
   resources :forgot_password
   match '/forgot_password/edit/:password_reset_token' => 'forgot_password#edit', :as => :Change_password

@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 		if @user.save
 			render :json => {
 							 :responseCode => "200",
-	                         :responseMessage => "You have succesfully Signed Up. You confiramation instructions are sent on your mail. The token is valid for only two hours"							
+	                         :responseMessage => "You have successfully signed up. Your account activation link has been sent on your mail. That link is valid only for 2 hrs."							
 						    }			
 		else
 			render :json => {:msg => "Please try again"}
